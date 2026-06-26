@@ -103,7 +103,7 @@ function App() {
             href="#waitlist"
             onClick={(event) => handleNavClick(event, "#waitlist")}
           >
-            Contact Us / Waitlist
+            Contact
           </a>
         </nav>
       </header>
