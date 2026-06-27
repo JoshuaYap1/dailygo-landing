@@ -174,22 +174,43 @@ function Why() {
           <p className="section-number">04</p>
 
           <h2>
-            A 10-second habit for <em>everyday gut comfort.</em>
+            Developed with <em>responsible wellness</em> in mind.
           </h2>
 
+          <p>
+            DailyGo is currently in early-stage product development, with our
+            formulation direction being explored alongside R&amp;D and product
+            development partners.
+          </p>
+
+          <p>
+            Our goal is to create a gentle jasmine-flavoured wellness drink that
+            is easy to adopt daily, while being responsibly developed with
+            ingredient clarity, safety, and future validation in mind.
+          </p>
+
           <ul>
-            <li>Supports gut wellness through a simple daily drink habit.</li>
-            <li>Designed for adults who experience bloating, heaviness, or irregular routines.</li>
-            <li>Portable sachet format for convenience and consistency.</li>
-            <li>Light jasmine flavour inspired by familiar Asian tea rituals.</li>
-            <li>No complicated steps or major routine changes.</li>
+            <li>
+              Formulation direction guided by ingredient research and product
+              development.
+            </li>
+            <li>
+              Future stages may include ingredient refinement, taste testing,
+              and user feedback.
+            </li>
+            <li>
+              Long-term roadmap includes pilot validation where appropriate.
+            </li>
+            <li>
+              Positioned as daily wellness support, not a medical treatment.
+            </li>
           </ul>
         </div>
 
         <img
           className="why-main-image image-hover"
           src="/images/product.jpg"
-          alt="DailyGo product sachet"
+          alt="DailyGo product development and formulation direction"
         />
       </section>
 
