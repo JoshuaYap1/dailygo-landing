@@ -1,6 +1,8 @@
 function Why() {
   return (
     <main className="why-page">
+
+      {/* HERO */}
       <section className="why-hero-new reveal">
         <div className="why-hero-text">
           <p className="eyebrow">Why DailyGo</p>
@@ -29,11 +31,15 @@ function Why() {
         />
       </section>
 
+
+      {/* SECTION 01 */}
       <section className="why-section reveal">
         <div className="why-copy">
           <p className="section-number">01</p>
 
-          <h2>Gut discomfort can quietly affect everyday living.</h2>
+          <h2>
+            Gut discomfort can quietly affect everyday living.
+          </h2>
 
           <p>
             For many adults, especially those aged 50 and above, changes in
@@ -60,7 +66,7 @@ function Why() {
           </div>
 
           <div className="why-icon-item">
-            <img src="/images/1plane.png" alt="Travel and routine changes" />
+            <img src="/images/1plane.png" alt="Routine changes" />
             <span>Routine changes</span>
           </div>
 
@@ -81,6 +87,8 @@ function Why() {
         </div>
       </section>
 
+
+      {/* SECTION 02 */}
       <section className="why-section alternate reveal">
         <div className="why-copy">
           <p className="section-number">02</p>
@@ -114,7 +122,7 @@ function Why() {
           </div>
 
           <div className="why-image-card image-hover">
-            <img src="/images/work 1.png" alt="At home or at your desk" />
+            <img src="/images/work 1.png" alt="At home or desk" />
             <span>At home or desk</span>
           </div>
 
@@ -135,8 +143,10 @@ function Why() {
         </div>
       </section>
 
-      <section className="why-section reveal">
-        <div className="why-copy">
+
+      {/* SECTION 03 — TEXT ONLY */}
+      <section className="why-section why-section-text-only reveal">
+        <div className="why-copy why-copy-wide">
           <p className="section-number">03</p>
 
           <h2>
@@ -161,14 +171,10 @@ function Why() {
             <span>Not overly medicinal</span>
           </div>
         </div>
-
-        <img
-          className="why-main-image image-hover"
-          src="/images/product.jpg"
-          alt="DailyGo jasmine flavoured product"
-        />
       </section>
 
+
+      {/* SECTION 04 */}
       <section className="why-section alternate reveal">
         <div className="why-copy">
           <p className="section-number">04</p>
@@ -194,34 +200,44 @@ function Why() {
               Formulation direction guided by ingredient research and product
               development.
             </li>
+
             <li>
               Future stages may include ingredient refinement, taste testing,
               and user feedback.
             </li>
+
             <li>
               Long-term roadmap includes pilot validation where appropriate.
             </li>
+
             <li>
               Positioned as daily wellness support, not a medical treatment.
             </li>
           </ul>
         </div>
 
-        <img
-          className="why-main-image image-hover"
-          src="/images/product.jpg"
-          alt="DailyGo product development and formulation direction"
-        />
+        <div className="why-brand-graphic">
+          <img
+            src="/images/rwe.png"
+            alt="DailyGo Responsible Wellness Every Day"
+          />
+        </div>
       </section>
 
+
+      {/* CLOSING */}
       <section className="why-closing reveal">
         <h2>
-          Gut wellness should feel simple, <br />
+          Gut wellness should feel simple,
+          <br />
           familiar, and easy to keep.
         </h2>
 
-        <p>DailyGo. Gentle jasmine. Daily comfort. Your routine.</p>
+        <p>
+          DailyGo. Gentle jasmine. Daily comfort. Your routine.
+        </p>
       </section>
+
     </main>
   );
 }
