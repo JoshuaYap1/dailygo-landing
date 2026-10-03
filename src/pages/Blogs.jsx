@@ -1,159 +1,136 @@
-import { useState } from "react";
-
-const blogPosts = [
-  {
-    title: "A Gentle Morning Drink for Daily Gut Comfort",
-    category: "Daily Gut Comfort",
-    date: "May 2026",
-    image: "/images/morning_routine_with_dailygo_gut_reset.png",
-    slug: "morning-ritual",
-    excerpt:
-      "How a simple jasmine-flavoured drink can support a calmer, more comfortable start to the day.",
-  },
-  {
-    title: "Why Gut Comfort Matters More for Adults 50+",
-    category: "50+ Wellness",
-    date: "May 2026",
-    image: "/images/50_plus_wellness.png",
-    slug: "modern-routines",
-    excerpt:
-      "As routines, hydration, movement, and meal timing change, small daily habits can help support everyday comfort.",
-  },
-  {
-    title: "How Travel and Long Days Can Affect Your Body Rhythm",
-    category: "Routine Changes",
-    date: "May 2026",
-    image: "/images/Travel 1.png",
-    slug: "travel-rhythm",
-    excerpt:
-      "Travel, appointments, errands, and long days outside the home can affect hydration, meals, movement, and gut rhythm.",
-  },
-  {
-    title: "Why Familiar Taste Makes Wellness Easier to Keep",
-    category: "Jasmine Rituals",
-    date: "May 2026",
-    image: "/images/satchet next to desktop.png",
-    slug: "wellness-habits",
-    excerpt:
-      "A light jasmine flavour inspired by Asian tea rituals can make gut wellness feel more familiar and less clinical.",
-  },
-  {
-    title: "How to Build a Gut Wellness Habit Without Changing Your Life",
-    category: "Simple Routines",
-    date: "May 2026",
-    image: "/images/coffee 1.png",
-    slug: "gut-wellness-ritual",
-    excerpt:
-      "Gut wellness does not need to feel complicated. It can begin with one small drink ritual that fits into your day.",
-  },
-  {
-    title: "The Role of Tea Rituals in Everyday Asian Wellness",
-    category: "Asian Daily Habits",
-    date: "May 2026",
-    image: "/images/breakfast 1.png",
-    slug: "small-daily-rituals",
-    excerpt:
-      "DailyGo builds on the familiarity of Asian tea culture with a gentle jasmine flavour designed for everyday use.",
-  },
-];
-
-const tabs = [
-  "All",
-  "Daily Gut Comfort",
-  "50+ Wellness",
-  "Routine Changes",
-  "Jasmine Rituals",
-  "Simple Routines",
-  "Asian Daily Habits",
-];
+import useFadeIn from "../hooks/useFadeIn";
 
 function Blogs() {
-  const [activeTab, setActiveTab] = useState("All");
+  const heroFade = useFadeIn();
+  const articlesFade = useFadeIn();
+  const ctaFade = useFadeIn();
 
-  const filteredPosts =
-    activeTab === "All"
-      ? blogPosts
-      : blogPosts.filter((post) => post.category === activeTab);
-
-  const handleTopicClick = (tab) => {
-    setActiveTab(tab);
-
-    setTimeout(() => {
-      const blogResults = document.getElementById("blog-results");
-
-      if (blogResults) {
-        blogResults.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 50);
-  };
-
-  const handleBlogClick = (post) => {
-    window.location.hash = `#/blogs/${post.slug}`;
-  };
+  const articles = [
+    {
+      category: "GUT & ROUTINE",
+      title: "Your gut follows a daily rhythm too.",
+      description:
+        "Sleep, meals and changing routines can all influence how your digestive system feels throughout the day.",
+      image: "/images/Morning.png",
+      slug: "gut-daily-rhythm",
+    },
+    {
+      category: "FOOD & FIBRE",
+      title: "Simple ways to add more fibre to your day.",
+      description:
+        "Small changes to everyday meals can make fibre easier to build into your routine.",
+      image: "/images/breakfast 1.png",
+      slug: "adding-more-fibre",
+    },
+    {
+      category: "TRAVEL",
+      title: "Why travel can throw your routine off.",
+      description:
+        "Different meals, sleep schedules, movement and time zones can make travelling feel different for your gut too.",
+      image: "/images/airport.png",
+      slug: "travel-and-routine",
+    },
+  ];
 
   return (
-    <main className="blog-page">
-      <section className="blog-hero">
-        <p className="eyebrow">DailyGo Journal</p>
+    <main className="blogs-page">
 
-        <h1>Simple gut wellness guides for everyday comfort.</h1>
+      {/* =====================================================
+          01 — HERO
+      ====================================================== */}
+      <section
+        ref={heroFade.ref}
+        className={`blogs-hero fade-section ${
+          heroFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="blogs-hero-copy">
+          <p className="eyebrow">THE DAILYGO JOURNAL</p>
 
-        <p>
-          Thoughtful reads on digestive comfort, gentle routines, jasmine taste,
-          and everyday wellness habits designed for adults aged 50 and above.
-        </p>
+          <h1>
+            Better routines start
+            <br />
+            with understanding.
+          </h1>
+
+          <p className="blogs-hero-description">
+            Simple, practical reads about gut wellness, everyday habits
+            and the routines that shape how we feel.
+          </p>
+        </div>
       </section>
 
-      <section className="blog-content-layout" id="blog-results">
-        <section className="blog-grid">
-          {filteredPosts.map((post, index) => (
-            <button
-              type="button"
-              className="blog-card"
-              key={`${post.slug}-${activeTab}`}
-              onClick={() => handleBlogClick(post)}
-              style={{ animationDelay: `${index * 0.08}s` }}
-            >
-              <div className="blog-image-wrap">
-                <img src={post.image} alt={post.title} />
+
+      {/* =====================================================
+          02 — ARTICLES
+      ====================================================== */}
+      <section
+        ref={articlesFade.ref}
+        className={`blogs-content fade-section ${
+          articlesFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="blogs-grid">
+          {articles.map((article) => (
+            <article className="blog-card" key={article.slug}>
+              <div className="blog-card-image">
+                <img
+                  src={article.image}
+                  alt={article.title}
+                />
               </div>
 
               <div className="blog-card-content">
-                <div className="blog-meta">
-                  <span>{post.category}</span>
-                  <span>{post.date}</span>
-                </div>
+                <p className="eyebrow">
+                  {article.category}
+                </p>
 
-                <h2>{post.title}</h2>
+                <h2>{article.title}</h2>
 
-                <p>{post.excerpt}</p>
+                <p>{article.description}</p>
 
-                <span className="read-more">Read more →</span>
+                <a
+                  href={`/blogs/${article.slug}`}
+                  className="text-link"
+                >
+                  Read article <span>→</span>
+                </a>
               </div>
-            </button>
+            </article>
           ))}
-        </section>
-
-        <aside className="blog-sidebar-tabs">
-          <p className="blog-sidebar-label">Journal topics</p>
-
-          <div className="blog-tabs">
-            {tabs.map((tab) => (
-              <button
-                type="button"
-                key={tab}
-                className={`blog-tab ${activeTab === tab ? "active" : ""}`}
-                onClick={() => handleTopicClick(tab)}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-        </aside>
+        </div>
       </section>
+
+
+      {/* =====================================================
+          03 — CTA
+      ====================================================== */}
+      <section
+        ref={ctaFade.ref}
+        className={`blogs-cta fade-section ${
+          ctaFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="blogs-cta-inner">
+          <p className="eyebrow">FOLLOW THE JOURNEY</p>
+
+          <h2>
+            DailyGo is still
+            <br />
+            taking shape.
+          </h2>
+
+          <p>
+            Join our early-access list for product development,
+            testing and future launch updates.
+          </p>
+
+          <a href="/waitlist" className="primary-btn">
+            Join Early Access
+          </a>
+        </div>
+      </section>
+
     </main>
   );
 }

@@ -1,241 +1,245 @@
+import { Link } from "react-router-dom";
+import useFadeIn from "../hooks/useFadeIn";
+
 function Why() {
+  const heroFade = useFadeIn();
+  const problemFade = useFadeIn();
+  const habitFade = useFadeIn();
+  const developmentFade = useFadeIn();
+  const ctaFade = useFadeIn();
+
   return (
     <main className="why-page">
 
-      {/* HERO */}
-      <section className="why-hero-new reveal">
-        <div className="why-hero-text">
-          <p className="eyebrow">Why DailyGo</p>
+      {/* =====================================================
+          01 — HERO
+      ====================================================== */}
+      <section
+        ref={heroFade.ref}
+        className={`why-hero fade-section ${
+          heroFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="why-hero-copy">
+          <p className="eyebrow">WHY DAILYGO</p>
 
           <h1>
-            Gentle gut wellness, made for <em>daily life.</em>
+            Gut wellness should
+            <br />
+            fit into real life.
           </h1>
 
-          <p>
-            DailyGo is a light jasmine-flavoured wellness drink designed to
-            support digestive comfort, everyday regularity, and simple daily
-            routines — especially for adults aged 50 and above.
-          </p>
-
-          <div className="why-points">
-            <span>Jasmine flavoured</span>
-            <span>Gentle daily support</span>
-            <span>10 seconds a day</span>
-          </div>
-        </div>
-
-        <img
-          className="why-main-image image-hover"
-          src="/images/why hero.png"
-          alt="DailyGo in everyday routine"
-        />
-      </section>
-
-
-      {/* SECTION 01 */}
-      <section className="why-section reveal">
-        <div className="why-copy">
-          <p className="section-number">01</p>
-
-          <h2>
-            Gut discomfort can quietly affect everyday living.
-          </h2>
-
-          <p>
-            For many adults, especially those aged 50 and above, changes in
-            routine, hydration, movement, meal timing, and stress can affect how
-            the body feels day to day.
-          </p>
-
-          <p>
-            These changes may show up as bloating, heaviness, irregularity, or
-            feeling out of sync. DailyGo is designed to make gut wellness easier
-            to support through a simple, familiar daily habit.
+          <p className="why-hero-description">
+            DailyGo® is being developed around the everyday routines that
+            can influence how our gut feels — from work and meals to
+            movement, sleep and travel.
           </p>
         </div>
 
-        <div className="why-icon-layout">
-          <div className="why-icon-item">
-            <img src="/images/1com.png" alt="Long sitting hours" />
-            <span>Long sitting hours</span>
-          </div>
-
-          <div className="why-icon-item">
-            <img src="/images/1forkknife.png" alt="Irregular meals" />
-            <span>Irregular meals</span>
-          </div>
-
-          <div className="why-icon-item">
-            <img src="/images/1plane.png" alt="Routine changes" />
-            <span>Routine changes</span>
-          </div>
-
-          <div className="why-icon-item">
-            <img src="/images/1mental.png" alt="Stress and mental load" />
-            <span>Stress and mental load</span>
-          </div>
-
-          <div className="why-icon-item">
-            <img src="/images/1desk.png" alt="Low movement" />
-            <span>Low movement</span>
-          </div>
-
-          <div className="why-icon-item">
-            <img src="/images/1time.png" alt="Inconsistent habits" />
-            <span>Inconsistent habits</span>
-          </div>
-        </div>
-      </section>
-
-
-      {/* SECTION 02 */}
-      <section className="why-section alternate reveal">
-        <div className="why-copy">
-          <p className="section-number">02</p>
-
-          <h2>
-            Wellness should feel <em>familiar.</em>
-          </h2>
-
-          <p>
-            Many wellness products feel too clinical, too complicated, or too
-            difficult to keep up with. DailyGo takes a gentler approach by
-            turning gut support into a simple drink ritual.
-          </p>
-
-          <p>
-            Inspired by Asian tea habits, DailyGo uses a light jasmine flavour
-            that feels familiar, calming, and easy to enjoy as part of a morning
-            drink, breakfast routine, or daily hydration habit.
-          </p>
-        </div>
-
-        <div className="why-image-grid">
-          <div className="why-image-card image-hover">
-            <img src="/images/coffee 1.png" alt="Morning drink" />
-            <span>Morning drink</span>
-          </div>
-
-          <div className="why-image-card image-hover">
-            <img src="/images/breakfast 1.png" alt="Breakfast routine" />
-            <span>Breakfast routine</span>
-          </div>
-
-          <div className="why-image-card image-hover">
-            <img src="/images/work 1.png" alt="At home or desk" />
-            <span>At home or desk</span>
-          </div>
-
-          <div className="why-image-card image-hover">
-            <img src="/images/on the go 1.png" alt="On the go" />
-            <span>On the go</span>
-          </div>
-
-          <div className="why-image-card image-hover">
-            <img src="/images/Travel 1.png" alt="While travelling" />
-            <span>While travelling</span>
-          </div>
-
-          <div className="why-image-card image-hover">
-            <img src="/images/anywhere 1.png" alt="Anytime you need" />
-            <span>Anytime you need</span>
-          </div>
-        </div>
-      </section>
-
-
-      {/* SECTION 03 — TEXT ONLY */}
-      <section className="why-section why-section-text-only reveal">
-        <div className="why-copy why-copy-wide">
-          <p className="section-number">03</p>
-
-          <h2>
-            Taste matters when building a <em>routine.</em>
-          </h2>
-
-          <p>
-            A product only becomes useful when people are willing to use it
-            consistently. That is why DailyGo is designed around taste,
-            familiarity, and ease — not just function.
-          </p>
-
-          <p>
-            The jasmine flavour gives DailyGo a light floral profile that feels
-            closer to an everyday Asian tea ritual than a medicinal supplement.
-            It is designed to be gentle, pleasant, and easy to drink daily.
-          </p>
-
-          <div className="why-points">
-            <span>Light jasmine profile</span>
-            <span>Asia-inspired taste</span>
-            <span>Not overly medicinal</span>
-          </div>
-        </div>
-      </section>
-
-
-      {/* SECTION 04 */}
-      <section className="why-section alternate reveal">
-        <div className="why-copy">
-          <p className="section-number">04</p>
-
-          <h2>
-            Developed with <em>responsible wellness</em> in mind.
-          </h2>
-
-          <p>
-            DailyGo is currently in early-stage product development, with our
-            formulation direction being explored alongside R&amp;D and product
-            development partners.
-          </p>
-
-          <p>
-            Our goal is to create a gentle jasmine-flavoured wellness drink that
-            is easy to adopt daily, while being responsibly developed with
-            ingredient clarity, safety, and future validation in mind.
-          </p>
-
-          <ul>
-            <li>
-              Formulation direction guided by ingredient research and product
-              development.
-            </li>
-
-            <li>
-              Future stages may include ingredient refinement, taste testing,
-              and user feedback.
-            </li>
-
-            <li>
-              Long-term roadmap includes pilot validation where appropriate.
-            </li>
-
-            <li>
-              Positioned as daily wellness support, not a medical treatment.
-            </li>
-          </ul>
-        </div>
-
-        <div className="why-brand-graphic">
+        <div className="why-hero-image">
           <img
-            src="/images/rwe.png"
-            alt="DailyGo Responsible Wellness Every Day"
+            src="/images/why hero.png"
+            alt="DailyGo everyday wellness lifestyle"
           />
         </div>
       </section>
 
 
-      {/* CLOSING */}
-      <section className="why-closing reveal">
-        <h2>
-          Gut wellness should feel simple,
-          <br />
-          familiar, and easy to keep.
-        </h2>
+      {/* =====================================================
+          02 — THE PROBLEM
+      ====================================================== */}
+      <section
+        ref={problemFade.ref}
+        className={`why-simple-section fade-section ${
+          problemFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="why-simple-number">
+          <span>01</span>
+        </div>
 
-        <p>
-          DailyGo. Gentle jasmine. Daily comfort. Your routine.
-        </p>
+        <div className="why-simple-copy">
+          <p className="eyebrow">MODERN ROUTINES</p>
+
+          <h2>
+            Life doesn't always
+            <br />
+            run on schedule.
+          </h2>
+
+          <p>
+            Long workdays, irregular meals, changing sleep, travel,
+            stress and long periods of sitting can make everyday routines
+            harder to maintain.
+          </p>
+
+          <p>
+            That is the kind of real-life context DailyGo is being
+            developed around.
+          </p>
+        </div>
+
+        <div className="why-simple-image">
+          <img
+            src="/images/people-at-desks.jpg"
+            alt="Busy working adults during the workday"
+          />
+        </div>
+      </section>
+
+
+      {/* =====================================================
+          03 — HABIT + EXPERIENCE
+      ====================================================== */}
+      <section
+        ref={habitFade.ref}
+        className={`why-habit-section fade-section ${
+          habitFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="why-habit-copy">
+          <p className="eyebrow">BUILT FOR CONSISTENCY</p>
+
+          <h2>
+            A daily habit should
+            <br />
+            feel easy to keep.
+          </h2>
+
+          <p>
+            We don't want DailyGo to feel like another wellness task
+            you have to remember.
+          </p>
+
+          <p>
+            The aim is to create something simple, enjoyable and portable
+            enough to fit naturally into everyday life.
+          </p>
+
+          <div className="why-habit-points">
+            <div>
+              <span>01</span>
+              <strong>Simple</strong>
+              <p>Easy to understand and easy to repeat.</p>
+            </div>
+
+            <div>
+              <span>02</span>
+              <strong>Enjoyable</strong>
+              <p>Taste and experience matter when building a habit.</p>
+            </div>
+
+            <div>
+              <span>03</span>
+              <strong>Portable</strong>
+              <p>
+                Designed around routines that don't always happen at home.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="why-habit-visual">
+          <div className="why-flavour-card">
+            <span>FLAVOUR DIRECTION</span>
+
+            <h3 className="why-flavour-name">
+              Peach Oolong
+            </h3>
+
+            <p>
+              Currently one of the leading directions being explored.
+              Final flavour is still under development.
+            </p>
+          </div>
+        </div>
+      </section>
+
+
+      {/* =====================================================
+          04 — DEVELOPMENT
+      ====================================================== */}
+      <section
+        ref={developmentFade.ref}
+        className={`why-development-compact fade-section ${
+          developmentFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="why-development-copy">
+          <p className="eyebrow">DEVELOPED THOUGHTFULLY</p>
+
+          <h2>
+            We're still learning
+            <br />
+            what DailyGo should become.
+          </h2>
+
+          <p>
+            DailyGo is currently being developed with Singapore
+            Polytechnic's Food Innovation & Resource Centre (FIRC).
+          </p>
+
+          <p>
+            The product is still being refined across formulation,
+            flavour, format and consumer experience before launch.
+          </p>
+
+          <Link to="/development" className="secondary-btn">
+            See Our Development
+          </Link>
+        </div>
+
+        <div className="why-development-roadmap">
+          <div>
+            <span>01</span>
+            <p>Research</p>
+          </div>
+
+          <div>
+            <span>02</span>
+            <p>Formulation</p>
+          </div>
+
+          <div>
+            <span>03</span>
+            <p>Testing</p>
+          </div>
+
+          <div>
+            <span>04</span>
+            <p>Pilot</p>
+          </div>
+        </div>
+      </section>
+
+
+      {/* =====================================================
+          05 — CTA
+      ====================================================== */}
+      <section
+        ref={ctaFade.ref}
+        className={`why-cta fade-section ${
+          ctaFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="why-cta-inner">
+          <p className="eyebrow">BE PART OF WHAT COMES NEXT</p>
+
+          <h2>
+            We're still building
+            <br />
+            DailyGo.
+          </h2>
+
+          <p>
+            Join our early-access list to hear about future testing,
+            pilot opportunities and launch updates.
+          </p>
+
+          <Link to="/waitlist" className="primary-btn">
+            Join Early Access
+          </Link>
+        </div>
       </section>
 
     </main>

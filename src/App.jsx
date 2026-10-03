@@ -1,139 +1,174 @@
-import { useEffect, useState } from "react";
-import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+} from "react-router-dom";
+
+import { useEffect } from "react";
 
 import Home from "./pages/Home";
 import Why from "./pages/Why";
 import Routine from "./pages/Routine";
+import Development from "./pages/Development";
 import Blogs from "./pages/Blogs";
-import Waitlist from "./pages/Waitlist";
 import BlogArticle from "./pages/BlogArticle";
+import Waitlist from "./pages/Waitlist";
+
+import "./App.css";
+
+
+/* =========================================================
+   SCROLL TO TOP ON EVERY PAGE CHANGE
+========================================================= */
+
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant",
+    });
+  }, [pathname]);
+
+  return null;
+}
+
+
+/* =========================================================
+   404 PAGE
+========================================================= */
+
+function NotFound() {
+  return (
+    <main className="not-found-page">
+      <section className="not-found-inner">
+        <p className="eyebrow">404</p>
+
+        <h1>
+          This page
+          <br />
+          doesn't exist.
+        </h1>
+
+        <p>
+          The page may have moved, or the link may be incorrect.
+        </p>
+
+        <Link to="/" className="primary-btn">
+          Back to DailyGo
+        </Link>
+      </section>
+    </main>
+  );
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
 
 function App() {
-  const [currentHash, setCurrentHash] = useState(window.location.hash || "#home");
-
-  useEffect(() => {
-    const handleHashChange = () => {
-      setCurrentHash(window.location.hash || "#home");
-    };
-
-    window.addEventListener("hashchange", handleHashChange);
-
-    return () => {
-      window.removeEventListener("hashchange", handleHashChange);
-    };
-  }, []);
-
-  useEffect(() => {
-    const isArticlePage = currentHash.startsWith("#/blogs/");
-
-    if (isArticlePage) {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
-      return;
-    }
-
-    const sectionId = currentHash.replace("#", "");
-
-    setTimeout(() => {
-      const section = document.getElementById(sectionId);
-
-      if (section) {
-        section.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-    }, 80);
-  }, [currentHash]);
-
-  const handleNavClick = (event, hash) => {
-    event.preventDefault();
-
-    if (window.location.hash === hash) {
-      setCurrentHash(hash);
-
-      const sectionId = hash.replace("#", "");
-      const section = document.getElementById(sectionId);
-
-      if (section) {
-        section.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }
-
-      return;
-    }
-
-    window.location.hash = hash;
-  };
-
-  const isBlogArticle = currentHash.startsWith("#/blogs/");
-
   return (
-    <>
-      <header className="navbar">
-        <a
-          href="#home"
-          className="logo"
-          onClick={(event) => handleNavClick(event, "#home")}
+    <BrowserRouter>
+
+      {/* Automatically return to top when route changes */}
+      <ScrollToTop />
+
+
+      {/* =====================================================
+          NAVIGATION
+      ====================================================== */}
+      <header className="site-header">
+
+        <Link
+          to="/"
+          className="site-logo"
         >
           DailyGo
-        </a>
+        </Link>
 
-        <nav>
-          <a href="#why" onClick={(event) => handleNavClick(event, "#why")}>
+        <nav className="site-nav">
+
+          <Link to="/why">
             Why DailyGo
-          </a>
+          </Link>
 
-          <a
-            href="#routine"
-            onClick={(event) => handleNavClick(event, "#routine")}
-          >
+          <Link to="/routine">
             Routine
-          </a>
+          </Link>
 
-          <a href="#blogs" onClick={(event) => handleNavClick(event, "#blogs")}>
-            Blogs
-          </a>
+          <Link to="/development">
+            Development
+          </Link>
 
-          <a
-            href="#waitlist"
-            onClick={(event) => handleNavClick(event, "#waitlist")}
+          <Link to="/blogs">
+            Journal
+          </Link>
+
+          <Link
+            to="/waitlist"
+            className="nav-cta"
           >
-            Contact
-          </a>
+            Early Access
+          </Link>
+
         </nav>
+
       </header>
 
-      {isBlogArticle ? (
-        <BlogArticle />
-      ) : (
-        <main>
-          <section id="home">
-            <Home />
-          </section>
 
-          <section id="why">
-            <Why />
-          </section>
+      {/* =====================================================
+          ROUTES
+      ====================================================== */}
+      <Routes>
 
-          <section id="routine">
-            <Routine />
-          </section>
+        <Route
+          path="/"
+          element={<Home />}
+        />
 
-          <section id="blogs">
-            <Blogs />
-          </section>
+        <Route
+          path="/why"
+          element={<Why />}
+        />
 
-          <section id="waitlist">
-            <Waitlist />
-          </section>
-        </main>
-      )}
-    </>
+        <Route
+          path="/routine"
+          element={<Routine />}
+        />
+
+        <Route
+          path="/development"
+          element={<Development />}
+        />
+
+        <Route
+          path="/blogs"
+          element={<Blogs />}
+        />
+
+        <Route
+          path="/blogs/:slug"
+          element={<BlogArticle />}
+        />
+
+        <Route
+          path="/waitlist"
+          element={<Waitlist />}
+        />
+
+        <Route
+          path="*"
+          element={<NotFound />}
+        />
+
+      </Routes>
+
+    </BrowserRouter>
   );
 }
 

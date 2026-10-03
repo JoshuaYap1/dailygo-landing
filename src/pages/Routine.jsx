@@ -1,93 +1,198 @@
+import useFadeIn from "../hooks/useFadeIn";
+
 function Routine() {
+  const heroFade = useFadeIn();
+  const morningFade = useFadeIn();
+  const workFade = useFadeIn();
+  const travelFade = useFadeIn();
+  const ctaFade = useFadeIn();
+
   return (
     <main className="routine-page">
-      <section className="routine-hero">
-        <p className="eyebrow">DailyGo routines</p>
-        <h1>A gentle jasmine ritual for everyday gut comfort.</h1>
 
-        <p>
-          DailyGo is designed to fit into familiar daily moments — from the
-          first drink of the morning, to a quiet afternoon pause, to days when
-          routines are disrupted by travel or appointments.
-        </p>
-      </section>
+      {/* =====================================================
+          01 — HERO
+      ====================================================== */}
+      <section
+        ref={heroFade.ref}
+        className={`routine-hero fade-section ${
+          heroFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="routine-hero-copy">
+          <p className="eyebrow">YOUR DAILY ROUTINE</p>
 
-      <section className="routine-tabs">
-        <a href="#morning">Morning drink</a>
-        <a href="#afternoon">Afternoon pause</a>
-        <a href="#travel">When routines change</a>
-      </section>
+          <h1>
+            Small habits.
+            <br />
+            Easier to keep.
+          </h1>
 
-      <section className="routine-grid">
-        <article id="morning" className="routine-card">
-          <img src="/images/Morning.png" alt="Morning DailyGo routine" />
+          <p className="routine-hero-description">
+            DailyGo® is being developed to fit naturally into the moments
+            you already have throughout the day — at home, at work
+            and on the move.
+          </p>
+        </div>
 
-          <div className="routine-overlay overlay-left">
-            <h2>Morning drink</h2>
-
-            <p>
-              Start the day with a light jasmine-flavoured drink that feels
-              familiar, gentle, and easy to prepare. DailyGo turns gut wellness
-              into a simple morning ritual that can be taken before breakfast,
-              after waking up, or as part of your usual first drink of the day.
-            </p>
-
-            <p>
-              For adults who experience bloating, heaviness, or irregular
-              routines, a small daily habit can make wellness feel more
-              manageable. No complicated steps, no major lifestyle change — just
-              tear, mix, and drink.
-            </p>
-          </div>
-        </article>
-
-        <article id="afternoon" className="routine-card">
+        <div className="routine-hero-image">
           <img
-            src="/images/satchet next to desktop.png"
-            alt="DailyGo sachet beside a desktop"
+            src="/images/morning_routine_with_dailygo_gut_reset.png"
+            alt="Daily wellness as part of a morning routine"
           />
-
-          <div className="routine-overlay">
-            <h2>Afternoon pause</h2>
-
-            <p>
-              Daily routines can become busy, especially with long sitting
-              hours, irregular meals, errands, caregiving, or work. DailyGo is
-              designed to become a small pause in the day — a light drink that
-              supports hydration, digestive comfort, and consistency.
-            </p>
-
-            <p>
-              Its jasmine flavour is inspired by familiar Asian tea rituals, so
-              it feels less like taking a supplement and more like enjoying a
-              gentle daily drink. This makes the habit easier to repeat and
-              easier to keep.
-            </p>
-          </div>
-        </article>
-
-        <article id="travel" className="routine-card">
-          <img src="/images/airport.png" alt="DailyGo travel routine" />
-
-          <div className="routine-overlay overlay-left">
-            <h2>When routines change</h2>
-
-            <p>
-              Travel, medical appointments, family visits, and long days outside
-              the home can disrupt meal timing, hydration, movement, and bowel
-              habits. DailyGo is made in a portable sachet format so it can be
-              kept in a bag and used whenever daily rhythm becomes harder to
-              maintain.
-            </p>
-
-            <p>
-              Whether at home or on the go, DailyGo helps make gut wellness feel
-              simple, familiar, and accessible — supporting everyday comfort
-              through a routine that takes just 10 seconds.
-            </p>
-          </div>
-        </article>
+        </div>
       </section>
+
+
+      {/* =====================================================
+          02 — MORNING
+      ====================================================== */}
+      <section
+        ref={morningFade.ref}
+        className={`routine-simple-section routine-morning fade-section ${
+          morningFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="routine-simple-image">
+          <img
+            src="/images/Morning.png"
+            alt="Morning wellness routine"
+          />
+        </div>
+
+        <div className="routine-simple-copy">
+          <span className="routine-number">01</span>
+
+          <p className="eyebrow">MORNING</p>
+
+          <h2>
+            Start with something
+            <br />
+            consistent.
+          </h2>
+
+          <p>
+            Mornings can provide a natural cue for everyday habits.
+            DailyGo is being designed to fit into that rhythm without
+            making the start of your day more complicated.
+          </p>
+        </div>
+      </section>
+
+
+      {/* =====================================================
+          03 — WORKDAY
+      ====================================================== */}
+      <section
+        ref={workFade.ref}
+        className={`routine-simple-section routine-work fade-section ${
+          workFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="routine-simple-copy">
+          <span className="routine-number">02</span>
+
+          <p className="eyebrow">WORKDAY</p>
+
+          <h2>
+            Wellness that works
+            <br />
+            around your day.
+          </h2>
+
+          <p>
+            Long working hours, irregular meals and extended periods of
+            sitting can make familiar routines harder to maintain.
+          </p>
+
+          <p>
+            DailyGo is being developed with convenience in mind so that
+            it can fit around your schedule rather than interrupt it.
+          </p>
+        </div>
+
+        <div className="routine-simple-image">
+          <img
+            src="/images/work 1.png"
+            alt="Daily wellness during a busy workday"
+          />
+        </div>
+      </section>
+
+
+      {/* =====================================================
+          04 — TRAVEL
+      ====================================================== */}
+      <section
+        ref={travelFade.ref}
+        className={`routine-simple-section routine-travel fade-section ${
+          travelFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="routine-simple-image">
+          <img
+            src="/images/airport.png"
+            alt="Daily wellness while travelling"
+          />
+        </div>
+
+        <div className="routine-simple-copy">
+          <span className="routine-number">03</span>
+
+          <p className="eyebrow">TRAVEL</p>
+
+          <h2>
+            Your routine doesn't
+            <br />
+            have to stay home.
+          </h2>
+
+          <p>
+            Travel can change meal timing, movement, hydration and sleep,
+            which can make familiar routines feel less predictable.
+          </p>
+
+          <p>
+            That is why portability is becoming an important part of
+            the DailyGo product direction.
+          </p>
+
+          <p className="development-note">
+            Portable bottle formats are currently being explored.
+          </p>
+        </div>
+      </section>
+
+
+      {/* =====================================================
+          05 — CTA
+      ====================================================== */}
+      <section
+        ref={ctaFade.ref}
+        className={`routine-closing fade-section ${
+          ctaFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="routine-closing-inner">
+          <p className="eyebrow">WHEREVER LIFE GOES</p>
+
+          <h2>
+            One simple routine,
+            <br />
+            wherever the day takes you.
+          </h2>
+
+          <p>
+            DailyGo is still in development. Join our early-access list
+            to hear about future testing and pilot opportunities.
+          </p>
+
+          <a href="/waitlist" className="primary-btn">
+            Join Early Access
+          </a>
+        </div>
+      </section>
+
     </main>
   );
 }

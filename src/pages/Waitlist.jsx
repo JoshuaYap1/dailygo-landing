@@ -1,71 +1,183 @@
 import { useState } from "react";
+import useFadeIn from "../hooks/useFadeIn";
 
 function Waitlist() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const heroFade = useFadeIn();
+  const formFade = useFadeIn();
 
-  const SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxgafC6VdrAH5eknI1P0uliHAjy9v6uXCONszOjI_42Ou7h8cxG4_iTCE1WZ4Td-HAG/exec";
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    interest: "",
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-    setIsSubmitting(true);
-    setMessage("Submitting...");
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
-    try {
-      await fetch(SCRIPT_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify({
-          name,
-          email,
-        }),
-      });
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-      setMessage("You’ve successfully joined the DailyGo waitlist.");
-      setName("");
-      setEmail("");
-    } catch (error) {
-      setMessage("Something went wrong. Please try again.");
-    } finally {
-      setIsSubmitting(false);
-    }
+    console.log("Early access submission:", formData);
+
+    // Replace this later with Formspree, Supabase,
+    // your own backend, or another form service.
+
+    alert(
+      "Thanks for joining DailyGo early access! We'll keep you updated."
+    );
+
+    setFormData({
+      name: "",
+      email: "",
+      interest: "",
+    });
   };
 
   return (
-    <main className="page waitlist-page">
-      <h1>Contact Us / Join the Waitlist</h1>
+    <main className="waitlist-page">
 
-      <p>Be the first to try DailyGo when our testing batch is ready.</p>
+      {/* =====================================================
+          01 — HERO
+      ====================================================== */}
+      <section
+        ref={heroFade.ref}
+        className={`waitlist-hero fade-section ${
+          heroFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="waitlist-hero-inner">
+          <p className="eyebrow">EARLY ACCESS</p>
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+          <h1>
+            Be part of what
+            <br />
+            comes next.
+          </h1>
 
-        <input
-          type="email"
-          placeholder="Your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
+          <p className="waitlist-hero-description">
+            DailyGo® is still in development. Join our early-access list
+            for product updates, future testing opportunities and
+            pilot invitations.
+          </p>
+        </div>
+      </section>
 
-        <br />
 
-        <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Joining..." : "Join Waitlist"}
-        </button>
-      </form>
+      {/* =====================================================
+          02 — FORM
+      ====================================================== */}
+      <section
+        ref={formFade.ref}
+        className={`waitlist-content fade-section ${
+          formFade.isVisible ? "is-visible" : ""
+        }`}
+      >
+        <div className="waitlist-copy">
+          <p className="eyebrow">JOIN THE LIST</p>
 
-      {message && <p style={{ marginTop: "20px" }}>{message}</p>}
+          <h2>
+            We'd love to
+            <br />
+            keep you posted.
+          </h2>
+
+          <p>
+            Leave your details below and we'll let you know when there are
+            opportunities to try DailyGo or follow the product journey.
+          </p>
+
+          <div className="waitlist-benefits">
+            <div>
+              <span>01</span>
+              <p>Product development updates</p>
+            </div>
+
+            <div>
+              <span>02</span>
+              <p>Future testing opportunities</p>
+            </div>
+
+            <div>
+              <span>03</span>
+              <p>Pilot invitations</p>
+            </div>
+          </div>
+        </div>
+
+
+        <form
+          className="waitlist-form"
+          onSubmit={handleSubmit}
+        >
+          <label>
+            Name
+            <input
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Your name"
+              required
+            />
+          </label>
+
+          <label>
+            Email
+            <input
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="you@example.com"
+              required
+            />
+          </label>
+
+          <label>
+            What are you most interested in?
+            <select
+              name="interest"
+              value={formData.interest}
+              onChange={handleChange}
+              required
+            >
+              <option value="" disabled>
+                Select an option
+              </option>
+
+              <option value="trying-dailygo">
+                Trying DailyGo
+              </option>
+
+              <option value="pilot">
+                Joining a future product pilot
+              </option>
+
+              <option value="updates">
+                Following the product journey
+              </option>
+            </select>
+          </label>
+
+          <button
+            type="submit"
+            className="primary-btn"
+          >
+            Join Early Access
+          </button>
+
+          <p className="waitlist-privacy">
+            No spam. Just occasional DailyGo development and launch updates.
+          </p>
+        </form>
+      </section>
+
     </main>
   );
 }
